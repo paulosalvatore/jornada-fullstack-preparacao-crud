@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/jornada-fullstack-preparacao.iml" filepath="$PROJECT_DIR$/.idea/jornada-fullstack-preparacao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/jornada-fullstack-preparacao-crud.iml" filepath="$PROJECT_DIR$/.idea/jornada-fullstack-preparacao-crud.iml" />
     </modules>
   </component>
 </project>
