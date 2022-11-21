@@ -2,6 +2,6 @@ POST http://localhost:3000/item
 Content-Type: application/json
 
 {
-  "name": "Item 1",
-  "imageUrl": "https://source.unsplash.com/random/200x200"
+  "nome": "Item 2",
+  "imagemUrl": "https://source.unsplash.com/random/200x200"
 }

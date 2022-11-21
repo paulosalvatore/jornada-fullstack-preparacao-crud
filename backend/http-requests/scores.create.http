@@ -1,7 +1,0 @@
-POST http://localhost:3000/scores
-Content-Type: application/json
-
-{
-  "score": 40,
-  "name": "Nova Pessoa 3"
-}

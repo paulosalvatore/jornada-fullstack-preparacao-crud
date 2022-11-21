@@ -42,7 +42,7 @@ const create = async (req, res) => {
   const item = req.body;
 
   // Validate object
-  if (!item || !item.name || !item.imageUrl) {
+  if (!item || !item.nome || !item.imagemUrl) {
     return res.status(400).send({ message: "Dados inválidos!" });
   }
 
@@ -64,7 +64,7 @@ const update = async (req, res) => {
     return res.status(400).send({ message: "ID inválido!" });
   }
 
-  if (!item || !item.name || !item.imageUrl) {
+  if (!item || !item.nome || !item.imagemUrl) {
     return res.status(400).send({ message: "Dados inválidos!" });
   }
 

@@ -2,6 +2,6 @@ PUT http://localhost:3000/item/637b8340a633d1a5de57a09c
 Content-Type: application/json
 
 {
-  "name": "Item 1 - Edit",
-  "imageUrl": "https://source.unsplash.com/random/300x300"
+  "nome": "Item 1 - Edit",
+  "imagemUrl": "https://source.unsplash.com/random/300x300"
 }

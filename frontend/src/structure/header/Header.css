@@ -1,0 +1,15 @@
+.header {
+    background: #0142BE;
+    color: #ffffff;
+}
+
+.header {
+    align-items: center;
+    display: flex;
+    font-size: 1rem;
+}
+
+.header a {
+    color: #ffffff;
+    margin: 1rem;
+}
