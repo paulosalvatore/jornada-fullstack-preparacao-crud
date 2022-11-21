@@ -5,4 +5,6 @@ const itemSchema = new mongoose.Schema({
   imageUrl: { type: String, required: true },
 });
 
-export const Item = mongoose.model("Item", itemSchema);
+const Item = mongoose.model("Item", itemSchema);
+
+module.exports = Item;
