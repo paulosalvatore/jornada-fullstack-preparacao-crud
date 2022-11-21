@@ -1,32 +1,35 @@
+// Importa a lib `DotEnv` para adicionar suporte à arquivos `.env`
 const dotenv = require("dotenv");
 dotenv.config();
 
+// Imports
 const express = require("express");
 const cors = require("cors");
 const { connectToDatabase } = require("./db/connect-to-database");
 
-// Routes
+// Import dos `Routers`
 const itemRouter = require("./item/item.router");
 
+// Porta do servidor
 const port = process.env.PORT || 3000;
 
 async function main() {
   // Aguarda a conexão com o banco de dados
   await connectToDatabase();
 
-  // Cria o servidor express
+  // Cria o servidor `express`
   const app = express();
 
-  // Middlewares
+  // `Middlewares`
   app.use(cors());
   app.use(express.json());
 
-  // Default route
+  // Rota principal
   app.get("/", (req, res) => {
     res.send("Hello World!");
   });
 
-  // Routers
+  // Inicialização dos `Routers`
   app.use("/item", itemRouter);
 
   // Inicia o servidor
