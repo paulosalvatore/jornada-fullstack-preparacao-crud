@@ -1,0 +1,7 @@
+POST http://localhost:3000/item
+Content-Type: application/json
+
+{
+  "name": "Item 1",
+  "imageUrl": "https://source.unsplash.com/random/200x200"
+}
