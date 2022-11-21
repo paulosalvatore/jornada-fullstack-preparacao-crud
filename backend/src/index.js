@@ -5,7 +5,7 @@ dotenv.config();
 // Imports
 const express = require("express");
 const cors = require("cors");
-const { connectToDatabase } = require("./db/connect-to-database");
+const { connectToDatabase } = require("./db/database.helper");
 
 // Import dos `Routers`
 const itemRouter = require("./item/item.router");
