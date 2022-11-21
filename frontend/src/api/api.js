@@ -56,7 +56,3 @@ export const Api = {
     });
   },
 };
-
-console.log(Api);
-console.log(Api.item.endpoint());
-console.log(Api.item.readAll());
