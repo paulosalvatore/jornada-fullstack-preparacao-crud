@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Api } from "../../api/api";
+import { useParams } from "react-router-dom";
 
 import "./ReadById.css";
 
-export default function ReadById(props) {
-  const id = props.match.params.id;
+export default function ReadById() {
+  const { id } = useParams();
 
-  const [item, setItem] = useState(undefined);
+  const [item, setItem] = useState();
 
   useEffect(() => {
     if (!item) {
-      getItemData();
+      loadData();
     }
   }, []);
 
-  const getItemData = async () => {
-    const resultado = await Api.buildApiGetRequest(Api.item.readById(id));
-
-    const dados = await resultado.json();
-
-    setItem(dados);
+  const loadData = async () => {
+    const url = Api.item.readById(id);
+    const response = await Api.buildApiGetRequest(url);
+    const body = await response.json();
+    setItem(body);
   };
+
+  if (!item) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <div className="read-by-id">

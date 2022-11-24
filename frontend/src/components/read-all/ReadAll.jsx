@@ -30,7 +30,7 @@ export default function ReadAll() {
   }
 
   return (
-    <div className="read-all">
+    <div className="ReadAll">
       {listaResultadoApi.map((item, index) => (
         <ItemCard item={item} key={index} />
       ))}

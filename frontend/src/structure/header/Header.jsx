@@ -5,7 +5,7 @@ import "./Header.css";
 
 export default function Header() {
   return (
-    <header className="header">
+    <header className="Header">
       <a href="/">
         <img src={Brand} width={32} height={32} alt="Samsung Ocean" />
       </a>

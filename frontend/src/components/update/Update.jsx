@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Api } from "../../api/api";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./Update.css";
-import { useNavigate } from "react-router-dom";
 
-export default function Update(props) {
-  const id = props.match.params.id;
+export default function Update() {
+  const { id } = useParams();
 
   const [item, setItem] = useState(undefined);
 
@@ -15,18 +15,17 @@ export default function Update(props) {
 
   useEffect(() => {
     if (!item) {
-      getItemData();
+      loadData();
     }
   }, []);
 
-  const getItemData = async () => {
-    const resultado = await Api.buildApiGetRequest(Api.item.readById(id));
+  const loadData = async () => {
+    const url = Api.item.readById(id);
+    const response = await Api.buildApiGetRequest(url);
+    const body = await response.json();
 
-    const dados = await resultado.json();
-
-    setItem(dados);
-
-    setPreviewImage(dados.imagemUrl);
+    setItem(body);
+    setPreviewImage(body.imagemUrl);
   };
 
   const handleSubmit = async (event) => {
@@ -35,16 +34,15 @@ export default function Update(props) {
     const nome = event.target.nome.value;
     const imagemUrl = event.target.imagemUrl.value;
 
-    const dados = {
+    const payload = {
       nome,
       imagemUrl,
     };
 
-    const resultado = await Api.buildApiPutRequest(Api.updateUrl(id), dados);
-
-    const jsonResultado = await resultado.json();
-
-    navigate(`/view/${jsonResultado._id}`);
+    const url = Api.item.update(id);
+    const response = await Api.buildApiPutRequest(url, payload);
+    const body = await response.json();
+    navigate(`/view/${body._id}`);
   };
 
   const updatePreview = (event) => {
@@ -52,7 +50,7 @@ export default function Update(props) {
   };
 
   return (
-    <div className="update">
+    <div className="Update">
       <form className="form" onSubmit={handleSubmit}>
         <label htmlFor="nome" className="form__label">
           Nome:

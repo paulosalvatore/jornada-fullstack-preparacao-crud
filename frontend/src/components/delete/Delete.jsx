@@ -1,17 +1,18 @@
 import { Api } from "../../api/api";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./Delete.css";
-import { useNavigate } from "react-router-dom";
 
-export default function Delete(props) {
-  const id = props.match.params.id;
+export default function Delete() {
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
   const handleDelete = async (event) => {
     event.preventDefault();
 
-    await Api.buildApiDeleteRequest(Api.item.delete(id));
+    const url = Api.item.delete(id);
+    await Api.buildApiDeleteRequest(url);
 
     navigate("/");
   };

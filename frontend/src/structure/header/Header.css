@@ -1,15 +1,15 @@
-.header {
+.Header {
     background: #0142BE;
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
-.header {
+.Header {
     align-items: center;
     display: flex;
     font-size: 1rem;
 }
 
-.header a {
-    color: #ffffff;
+.Header a {
+    color: #FFFFFF;
     margin: 1rem;
 }

@@ -4,8 +4,8 @@ import { Api } from "../../api/api";
 import "./Create.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Create(props) {
-  const [previewImage, setPreviewImage] = useState(undefined);
+export default function Create() {
+  const [previewImage, setPreviewImage] = useState();
 
   const navigate = useNavigate();
 
@@ -15,17 +15,16 @@ export default function Create(props) {
     const nome = event.target.nome.value;
     const imagemUrl = event.target.imagemUrl.value;
 
-    const dados = {
+    const payload = {
       nome,
       imagemUrl,
     };
 
-    const resultado = await Api.buildApiPostRequest(Api.item.create(), dados);
+    const url = Api.item.create();
+    const response = await Api.buildApiPostRequest(url, payload);
+    const body = await response.json();
 
-    const jsonResultado = await resultado.json();
-
-    props.history.push(`/view/${jsonResultado._id}`);
-    navigate(`/view/${jsonResultado._id}`);
+    navigate(`/view/${body._id}`);
   };
 
   const updatePreview = (event) => {
@@ -35,32 +34,31 @@ export default function Create(props) {
   return (
     <div className="create">
       <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="nome" className="form__label">
-          Nome:
-        </label>
-        <br />
+        <div>
+          <label htmlFor="nome" className="form__label">
+            Nome:
+          </label>
 
-        <input type="text" id="nome" name="nome" className="form__input" />
-        <br />
+          <input type="text" id="nome" name="nome" className="form__input" />
+        </div>
 
-        <label htmlFor="imagemUrl" className="form__label">
-          URL da Imagem:
-        </label>
-        <br />
+        <div>
+          <label htmlFor="imagemUrl" className="form__label">
+            URL da Imagem:
+          </label>
 
-        <input
-          type="text"
-          id="imagemUrl"
-          name="imagemUrl"
-          className="form__input"
-          onChange={updatePreview}
-        />
-        <br />
+          <input
+            type="text"
+            id="imagemUrl"
+            name="imagemUrl"
+            className="form__input"
+            onChange={updatePreview}
+          />
+        </div>
 
         {previewImage ? (
           <div>
-            <span className="form__label">Prévia da imagem:</span>
-            <br />
+            <div className="form__label">Prévia da imagem:</div>
             <img
               src={previewImage}
               className="preview-image"
@@ -70,13 +68,14 @@ export default function Create(props) {
         ) : (
           ""
         )}
-        <br />
 
-        <input
-          type="submit"
-          value="Adicionar"
-          className="button button--green button--full"
-        />
+        <div>
+          <input
+            type="submit"
+            value="Adicionar"
+            className="button button--green button--full"
+          />
+        </div>
       </form>
     </div>
   );

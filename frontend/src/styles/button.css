@@ -1,13 +1,13 @@
 .button {
     border: none;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     color: white;
-    padding: 15px 32px;
+    padding: 1rem 2rem;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    margin: 8px;
+    font-size: 1rem;
+    margin: 0.5rem;
     cursor: pointer;
 }
 
@@ -21,11 +21,11 @@
 }
 
 .button.button--red {
-    background: #dc3545;
+    background: #DC3545;
 }
 
 .button.button--blue {
-    background: #17a2b8;
+    background: #17A2B8;
 }
 
 .button.button--grey {
@@ -33,5 +33,5 @@
 }
 
 .button.button--green {
-    background: #28a745;
+    background: #28A745;
 }
