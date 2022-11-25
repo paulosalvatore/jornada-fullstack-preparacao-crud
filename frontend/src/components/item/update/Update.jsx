@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import CreatableSelect from "react-select/creatable";
 import { Api } from "../../../api/api.js";
+import PreviewImage from "../../ui/PreviewImage/PreviewImage.jsx";
 
 import "./Update.css";
-import { toast } from "react-toastify";
-import PreviewImage from "../../ui/PreviewImage/PreviewImage.jsx";
-import CreatableSelect from "react-select/creatable";
 
 export default function Update() {
   const { id } = useParams();
