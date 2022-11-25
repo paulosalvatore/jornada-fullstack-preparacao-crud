@@ -25,18 +25,18 @@ export default function Update() {
     const body = await response.json();
 
     setItem(body);
-    setPreviewImage(body.imagemUrl);
+    setPreviewImage(body.imageUrl);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const nome = event.target.nome.value;
-    const imagemUrl = event.target.imagemUrl.value;
+    const name = event.target.name.value;
+    const imageUrl = event.target.imageUrl.value;
 
     const payload = {
-      nome,
-      imagemUrl,
+      name,
+      imageUrl,
     };
 
     const url = Api.item.update(id);
@@ -52,28 +52,28 @@ export default function Update() {
   return (
     <div className="Update">
       <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="nome" className="form__label">
+        <label htmlFor="name" className="form__label">
           Nome:
         </label>
         <br />
         <input
           type="text"
-          id="nome"
-          name="nome"
+          id="name"
+          name="name"
           className="form__input"
-          defaultValue={item.nome}
+          defaultValue={item.name}
         />
         <br />
-        <label htmlFor="imagemUrl" className="form__label">
+        <label htmlFor="imageUrl" className="form__label">
           URL da Imagem:
         </label>
         <br />
         <input
           type="text"
-          id="imagemUrl"
-          name="imagemUrl"
+          id="imageUrl"
+          name="imageUrl"
           className="form__input"
-          defaultValue={item.imagemUrl}
+          defaultValue={item.imageUrl}
           onChange={updatePreview}
         />
         <br />

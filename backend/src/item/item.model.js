@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const itemSchema = new mongoose.Schema({
-  nome: { type: String, required: true },
-  imagemUrl: { type: String, required: true },
-  categoria: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  name: { type: String, required: true },
+  imageUrl: { type: String, required: true },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
 });
 
 const Item = mongoose.model("Item", itemSchema);

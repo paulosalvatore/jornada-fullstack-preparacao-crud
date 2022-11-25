@@ -39,14 +39,14 @@ const findById = async (req, res) => {
  * @param {express.Response} res
  */
 const create = async (req, res) => {
-  const categoria = req.body;
+  const category = req.body;
 
   // Validate object
-  if (!categoria || !categoria.nome) {
+  if (!category || !category.name) {
     return res.status(400).send({ message: "Dados inválidos!" });
   }
 
-  const newCategory = await service.create(categoria);
+  const newCategory = await service.create(category);
 
   res.status(201).send(newCategory);
 };
@@ -64,7 +64,7 @@ const update = async (req, res) => {
     return res.status(400).send({ message: "ID inválido!" });
   }
 
-  if (!category || !category.nome) {
+  if (!category || !category.name) {
     return res.status(400).send({ message: "Dados inválidos!" });
   }
 

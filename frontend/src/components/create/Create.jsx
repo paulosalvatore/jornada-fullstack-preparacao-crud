@@ -12,12 +12,12 @@ export default function Create() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const nome = event.target.nome.value;
-    const imagemUrl = event.target.imagemUrl.value;
+    const name = event.target.name.value;
+    const imageUrl = event.target.imageUrl.value;
 
     const payload = {
-      nome,
-      imagemUrl,
+      name,
+      imageUrl,
     };
 
     const url = Api.item.create();
@@ -35,22 +35,22 @@ export default function Create() {
     <div className="create">
       <form className="form" onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="nome" className="form__label">
+          <label htmlFor="name" className="form__label">
             Nome:
           </label>
 
-          <input type="text" id="nome" name="nome" className="form__input" />
+          <input type="text" id="name" name="name" className="form__input" />
         </div>
 
         <div>
-          <label htmlFor="imagemUrl" className="form__label">
+          <label htmlFor="imageUrl" className="form__label">
             URL da Imagem:
           </label>
 
           <input
             type="text"
-            id="imagemUrl"
-            name="imagemUrl"
+            id="imageUrl"
+            name="imageUrl"
             className="form__input"
             onChange={updatePreview}
           />

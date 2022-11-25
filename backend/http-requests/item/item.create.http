@@ -2,7 +2,7 @@ POST http://localhost:3000/item
 Content-Type: application/json
 
 {
-  "nome": "Item 2",
-  "imagemUrl": "https://source.unsplash.com/random/200x200",
-  "categoria": "638029ba93916dd958e015a1"
+  "name": "Item 2",
+  "imageUrl": "https://source.unsplash.com/random/200x200",
+  "category": "638029ba93916dd958e015a1"
 }

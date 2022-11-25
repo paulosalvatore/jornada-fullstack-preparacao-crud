@@ -6,8 +6,8 @@ export function ItemCard(props) {
   return (
     <a href={"/view/" + item._id}>
       <div className="card">
-        <h1 className="card__title">{item.nome}</h1>
-        <img src={item.imagemUrl} alt={item.nome} width="200" />
+        <h1 className="card__title">{item.name}</h1>
+        <img src={item.imageUrl} alt={item.name} width="200" />
       </div>
     </a>
   );
