@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../../api/api";
 
+import "./CategoryCreate.css";
+
 export default function CategoryCreate() {
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ export default function CategoryCreate() {
   };
 
   return (
-    <div className="Create">
+    <div className="CategoryCreate">
       <h1 className="title">Criar Categoria</h1>
 
       <form className="form" onSubmit={handleSubmit}>
