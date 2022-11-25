@@ -92,7 +92,19 @@ export default function Create() {
             Nome*:
           </label>
 
-          <input type="text" id="name" name="name" className="form__input" />
+          <input
+            type="text"
+            id="name"
+            name="name"
+            className="form__input"
+            required
+            onInvalid={(event) => {
+              event.target.setCustomValidity("Preencha o campo corretamente.");
+            }}
+            onInput={(event) => {
+              event.target.setCustomValidity("");
+            }}
+          />
         </div>
 
         <div>
@@ -106,6 +118,10 @@ export default function Create() {
             name="imageUrl"
             className="form__input"
             onChange={updatePreview}
+            required
+            onInvalid={(event) => {
+              event.target.setCustomValidity("Preencha o campo corretamente.");
+            }}
           />
         </div>
 
@@ -146,6 +162,7 @@ export default function Create() {
               `Criar categoria "${inputValue}"`
             }
             onCreateOption={createCategory}
+            required
           />
         </div>
 
