@@ -1,20 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Api } from "../../../api/api.js";
 
 import "./Update.css";
 import { toast } from "react-toastify";
 import PreviewImage from "../../ui/PreviewImage/PreviewImage.jsx";
+import CreatableSelect from "react-select/creatable";
 
 export default function Update() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [item, setItem] = useState();
 
   const [imageUrl, setImageUrl] = useState();
   const [image, setImage] = useState();
 
-  const navigate = useNavigate();
+  const [categories, setCategories] = useState();
+  const selectCategories = useRef();
+
+  const loadCategories = async () => {
+    const url = Api.category.readAll();
+    const response = await Api.buildApiGetRequest(url);
+    const body = await response.json();
+
+    setCategories(
+      body.map((category) => ({ value: category._id, label: category.name }))
+    );
+  };
+
+  const createCategory = async (name) => {
+    const payload = {
+      name,
+    };
+
+    const url = Api.category.create();
+    const response = await Api.buildApiPostRequest(url, payload);
+
+    if (response.status === 201) {
+      // Reload categories
+      setCategories(undefined);
+      await loadCategories();
+
+      // Select the new category
+      const body = await response.json();
+      selectCategories.current.setValue({
+        value: body._id,
+        label: body.name,
+      });
+    } else {
+      toast("Erro ao criar categoria, tente novamente.", { type: "error" });
+    }
+  };
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
 
   useEffect(() => {
     if (!item) {
@@ -28,7 +69,7 @@ export default function Update() {
     const body = await response.json();
 
     setItem(body);
-    setPreviewImage(body.imageUrl);
+    setImageUrl(body.imageUrl);
   };
 
   const handleSubmit = async (event) => {
@@ -97,6 +138,34 @@ export default function Update() {
         </div>
 
         <PreviewImage imageUrl={imageUrl} onImageLoaded={setImage} />
+
+        <div>
+          <label htmlFor="category" className="form__label">
+            Categoria*:
+          </label>
+
+          <CreatableSelect
+            ref={selectCategories}
+            className="form__select"
+            id="category"
+            name="category"
+            placeholder={"Selecione uma categoria"}
+            defaultValue={categories?.find(
+              (category) => category.value === item.category._id
+            )}
+            isLoading={categories === undefined}
+            options={categories}
+            allowCreateWhileLoading={false}
+            formatCreateLabel={(inputValue) =>
+              `Criar categoria "${inputValue}"`
+            }
+            onCreateOption={createCategory}
+            noOptionsMessage={() =>
+              "Nenhuma categoria encontrada. Digite algo para criar."
+            }
+            required
+          />
+        </div>
 
         <div>
           <input
