@@ -5,11 +5,13 @@ import CreatableSelect from "react-select/creatable";
 import { Api } from "../../../api/api.js";
 import PreviewImage from "../../ui/PreviewImage/PreviewImage.jsx";
 
-import "./Update.css";
+import "./Upsert.css";
 
-export default function Update() {
+export default function Upsert() {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const action = id ? "ATUALIZAR" : "CRIAR";
 
   const [item, setItem] = useState();
 
@@ -58,7 +60,7 @@ export default function Update() {
   }, []);
 
   useEffect(() => {
-    if (!item) {
+    if (action === "ATUALIZAR" && !item) {
       loadData();
     }
   }, []);
@@ -82,30 +84,41 @@ export default function Update() {
 
     const name = event.target.name.value;
     const imageUrl = event.target.imageUrl.value;
+    const category = event.target.category.value;
 
     const payload = {
       name,
       imageUrl,
+      category,
     };
 
-    const url = Api.item.update(id);
-    const response = await Api.buildApiPutRequest(url, payload);
+    const url = id ? Api.item.update(id) : Api.item.create();
+    const buildRequest = id ? Api.buildApiPutRequest : Api.buildApiPostRequest;
+    const response = await buildRequest(url, payload);
 
-    if (response.status === 200) {
-      toast("Item atualizado com sucesso.", { type: "success" });
-      navigate(`/view/${id}`);
+    if (response.status === 200 || response.status === 201) {
+      const displayAction = action === "ATUALIZAR" ? "atualizado" : "criado";
+      toast(`Item ${displayAction} com sucesso.`, { type: "success" });
+
+      const viewId = action === "ATUALIZAR" ? id : (await response.json())._id;
+      navigate(`/view/${viewId}`);
     } else {
-      toast("Erro ao atualizar item, tente novamente.", { type: "error" });
+      const displayAction = action === "ATUALIZAR" ? "atualizar" : "criar";
+      toast(`Erro ao ${displayAction} item, tente novamente.`, {
+        type: "error",
+      });
     }
   };
 
-  if (!item) {
+  if (action === "ATUALIZAR" && !item) {
     return <div>Carregando...</div>;
   }
 
   return (
-    <div className="Update">
-      <h1 className="title">Editar Item</h1>
+    <div className="Upsert">
+      <h1 className="title">
+        {action === "ATUALIZAR" ? "Editar" : "Criar"} Item
+      </h1>
 
       <form className="form" onSubmit={handleSubmit}>
         <div>
@@ -118,7 +131,7 @@ export default function Update() {
             id="name"
             name="name"
             className="form__input"
-            defaultValue={item.name}
+            defaultValue={item?.name}
           />
         </div>
 
@@ -132,7 +145,7 @@ export default function Update() {
             id="imageUrl"
             name="imageUrl"
             className="form__input"
-            defaultValue={item.imageUrl}
+            defaultValue={item?.imageUrl}
             onChange={(event) => setImageUrl(event.target.value)}
           />
         </div>
@@ -151,7 +164,7 @@ export default function Update() {
             name="category"
             placeholder={"Selecione uma categoria"}
             defaultValue={categories?.find(
-              (category) => category.value === item.category._id
+              (category) => category.value === item?.category._id
             )}
             isLoading={categories === undefined}
             options={categories}
@@ -170,8 +183,10 @@ export default function Update() {
         <div>
           <input
             type="submit"
-            value="Editar"
-            className="button button--blue button--full"
+            value={action === "ATUALIZAR" ? "Editar" : "Adicionar"}
+            className={`button button--full ${
+              action === "ATUALIZAR" ? " button--blue" : "button--green"
+            }`}
           />
         </div>
       </form>
