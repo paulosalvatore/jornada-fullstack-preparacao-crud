@@ -6,8 +6,10 @@ import CreatableSelect from "react-select/creatable";
 import "./Create.css";
 
 export default function Create() {
-  const [previewImage, setPreviewImage] = useState();
   const [categories, setCategories] = useState();
+
+  const [previewImage, setPreviewImage] = useState();
+  const [previewImageVisibility, setPreviewImageVisibility] = useState(false);
 
   const selectCategories = useRef();
 
@@ -107,16 +109,24 @@ export default function Create() {
           />
         </div>
 
-        {previewImage && (
-          <div>
-            <div className="form__label">Prévia da imagem:</div>
-            <img
-              src={previewImage}
-              className="preview-image"
-              alt="Prévia da Imagem"
-            />
-          </div>
-        )}
+        <div
+          style={{
+            display: previewImageVisibility ? "block" : "none",
+          }}
+        >
+          <div className="form__label">Prévia da imagem:</div>
+          <img
+            src={previewImage}
+            className="preview-image"
+            alt="Prévia da Imagem"
+            onKeyDown={() => setPreviewImageVisibility(false)}
+            onError={() => {
+              setPreviewImage(undefined);
+              setPreviewImageVisibility(false);
+            }}
+            onLoad={() => setPreviewImageVisibility(true)}
+          />
+        </div>
 
         <div>
           <label htmlFor="category" className="form__label">
