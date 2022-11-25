@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Api } from "../../api/api";
 
 import "./Update.css";
+import { toast } from "react-toastify";
 
 export default function Update() {
   const { id } = useParams();
@@ -43,10 +44,10 @@ export default function Update() {
     const response = await Api.buildApiPutRequest(url, payload);
 
     if (response.status === 200) {
-      alert("Item atualizado com sucesso.");
+      toast("Item atualizado com sucesso.", { type: "success" });
       navigate(`/view/${id}`);
     } else {
-      alert("Erro ao atualizar item, tente novamente.");
+      toast("Erro ao atualizar item, tente novamente.", { type: "error" });
     }
   };
 

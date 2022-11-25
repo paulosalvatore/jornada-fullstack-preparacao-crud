@@ -2,6 +2,7 @@ import { Api } from "../../api/api";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import "./Delete.css";
+import { toast } from "react-toastify";
 
 export default function Delete() {
   const { id } = useParams();
@@ -15,10 +16,10 @@ export default function Delete() {
     const response = await Api.buildApiDeleteRequest(url);
 
     if (response.status === 200) {
-      alert("Item removido com sucesso.");
+      toast("Item removido com sucesso.", { type: "success" });
       navigate("/");
     } else {
-      alert("Erro ao remover item, tente novamente.");
+      toast("Erro ao remover item, tente novamente.", { type: "error" });
     }
   };
 

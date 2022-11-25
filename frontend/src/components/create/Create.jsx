@@ -4,6 +4,7 @@ import { Api } from "../../api/api";
 import CreatableSelect from "react-select/creatable";
 
 import "./Create.css";
+import { toast } from "react-toastify";
 
 export default function Create() {
   const [categories, setCategories] = useState();
@@ -45,7 +46,7 @@ export default function Create() {
         label: body.name,
       });
     } else {
-      alert("Erro ao criar categoria, tente novamente.");
+      toast("Erro ao criar categoria, tente novamente.", { type: "error" });
     }
   };
 
@@ -61,7 +62,7 @@ export default function Create() {
     const category = event.target.category.value;
 
     if (!previewImage) {
-      alert("Insira uma imagem válida.");
+      toast("Insira uma imagem válida", { type: "error" });
       return;
     }
 
@@ -76,10 +77,10 @@ export default function Create() {
     const body = await response.json();
 
     if (response.status === 201) {
-      alert("Item criado com sucesso.");
+      toast("Item criado com sucesso", { type: "success" });
       navigate(`/view/${body._id}`);
     } else {
-      alert("Erro ao criar item, tente novamente.");
+      toast("Erro ao criar item, tente novamente", { type: "error" });
     }
   };
 
