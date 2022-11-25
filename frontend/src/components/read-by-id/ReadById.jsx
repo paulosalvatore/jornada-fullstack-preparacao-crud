@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Api } from "../../api/api";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import "./ReadById.css";
 
@@ -29,15 +29,16 @@ export default function ReadById() {
 
   return (
     <div className="read-by-id">
-      <a href={`/update/${id}`} className="button button--blue">
-        Editar
-      </a>
+      <div>
+        <Link to={`/update/${id}`} className="button button--blue">
+          Editar
+        </Link>
 
-      <a href={`/delete/${id}`} className="button button--red">
-        Remover
-      </a>
+        <Link to={`/delete/${id}`} className="button button--red">
+          Remover
+        </Link>
+      </div>
 
-      <br />
       <div className="card">
         <div className="card__label">{item.category.name}</div>
 
