@@ -4,13 +4,15 @@ import { Api } from "../../../api/api.js";
 
 import "./Update.css";
 import { toast } from "react-toastify";
+import PreviewImage from "../../ui/PreviewImage/PreviewImage.jsx";
 
 export default function Update() {
   const { id } = useParams();
 
   const [item, setItem] = useState();
 
-  const [previewImage, setPreviewImage] = useState();
+  const [imageUrl, setImageUrl] = useState();
+  const [image, setImage] = useState();
 
   const navigate = useNavigate();
 
@@ -32,6 +34,11 @@ export default function Update() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (!image) {
+      toast("Insira uma imagem válida", { type: "error" });
+      return;
+    }
+
     const name = event.target.name.value;
     const imageUrl = event.target.imageUrl.value;
 
@@ -49,10 +56,6 @@ export default function Update() {
     } else {
       toast("Erro ao atualizar item, tente novamente.", { type: "error" });
     }
-  };
-
-  const updatePreview = (event) => {
-    setPreviewImage(event.target.value);
   };
 
   if (!item) {
@@ -89,20 +92,11 @@ export default function Update() {
             name="imageUrl"
             className="form__input"
             defaultValue={item.imageUrl}
-            onChange={updatePreview}
+            onChange={(event) => setImageUrl(event.target.value)}
           />
         </div>
 
-        {previewImage && (
-          <div>
-            <div className="form__label">Prévia da imagem:</div>
-            <img
-              src={previewImage}
-              className="preview-image"
-              alt="Prévia da Imagem"
-            />
-          </div>
-        )}
+        <PreviewImage imageUrl={imageUrl} onImageLoaded={setImage} />
 
         <div>
           <input
