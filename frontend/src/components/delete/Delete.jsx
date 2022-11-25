@@ -1,5 +1,5 @@
 import { Api } from "../../api/api";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import "./Delete.css";
 
@@ -12,9 +12,14 @@ export default function Delete() {
     event.preventDefault();
 
     const url = Api.item.delete(id);
-    await Api.buildApiDeleteRequest(url);
+    const response = await Api.buildApiDeleteRequest(url);
 
-    navigate("/");
+    if (response.status === 200) {
+      alert("Item deletado com sucesso.");
+      navigate("/");
+    } else {
+      alert("Erro ao deletar item.");
+    }
   };
 
   return (
@@ -25,9 +30,9 @@ export default function Delete() {
       <button onClick={handleDelete} className="button button--red">
         Remover
       </button>
-      <a href={`/view/${id}`} className="button button--grey">
+      <Link to={`/view/${id}`} className="button button--grey">
         Cancelar
-      </a>
+      </Link>
     </div>
   );
 }

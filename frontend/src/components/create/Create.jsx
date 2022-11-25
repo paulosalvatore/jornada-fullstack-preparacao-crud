@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Api } from "../../api/api";
 
 import "./Create.css";
-import { useNavigate } from "react-router-dom";
 
 export default function Create() {
   const [previewImage, setPreviewImage] = useState();
@@ -24,7 +24,12 @@ export default function Create() {
     const response = await Api.buildApiPostRequest(url, payload);
     const body = await response.json();
 
-    navigate(`/view/${body._id}`);
+    if (response.status === 201) {
+      alert("Item criado com sucesso.");
+      navigate(`/view/${body._id}`);
+    } else {
+      alert("Erro ao criar item.");
+    }
   };
 
   const updatePreview = (event) => {

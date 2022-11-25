@@ -19,6 +19,7 @@ export default function ReadById() {
     const url = Api.item.readById(id);
     const response = await Api.buildApiGetRequest(url);
     const body = await response.json();
+
     setItem(body);
   };
 

@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { Api } from "../../api/api";
 import { useNavigate, useParams } from "react-router-dom";
+import { Api } from "../../api/api";
 
 import "./Update.css";
 
 export default function Update() {
   const { id } = useParams();
 
-  const [item, setItem] = useState(undefined);
+  const [item, setItem] = useState();
 
-  const [previewImage, setPreviewImage] = useState(undefined);
+  const [previewImage, setPreviewImage] = useState();
 
   const navigate = useNavigate();
 
@@ -42,55 +42,73 @@ export default function Update() {
     const url = Api.item.update(id);
     const response = await Api.buildApiPutRequest(url, payload);
     const body = await response.json();
-    navigate(`/view/${body._id}`);
+
+    if (response.status === 200) {
+      alert("Item atualizado com sucesso.");
+      navigate(`/view/${body._id}`);
+    } else {
+      alert("Erro ao atualizar item.");
+    }
   };
 
   const updatePreview = (event) => {
     setPreviewImage(event.target.value);
   };
 
+  if (!item) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <div className="Update">
       <form className="form" onSubmit={handleSubmit}>
-        <label htmlFor="name" className="form__label">
-          Nome:
-        </label>
-        <br />
-        <input
-          type="text"
-          id="name"
-          name="name"
-          className="form__input"
-          defaultValue={item.name}
-        />
-        <br />
-        <label htmlFor="imageUrl" className="form__label">
-          URL da Imagem:
-        </label>
-        <br />
-        <input
-          type="text"
-          id="imageUrl"
-          name="imageUrl"
-          className="form__input"
-          defaultValue={item.imageUrl}
-          onChange={updatePreview}
-        />
-        <br />
-        <span className="form__label">Prévia da imagem:</span>
-        <br />
-        <img
-          src={previewImage}
-          className="preview-image"
-          alt="Prévia da Imagem"
-        />
-        <br />
-        <br />
-        <input
-          type="submit"
-          value="Editar"
-          className="button button--blue button--full"
-        />
+        <div>
+          <label htmlFor="name" className="form__label">
+            Nome:
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            className="form__input"
+            defaultValue={item.name}
+          />
+        </div>
+
+        <div>
+          <label htmlFor="imageUrl" className="form__label">
+            URL da Imagem:
+          </label>
+
+          <input
+            type="text"
+            id="imageUrl"
+            name="imageUrl"
+            className="form__input"
+            defaultValue={item.imageUrl}
+            onChange={updatePreview}
+          />
+        </div>
+
+        {previewImage && (
+          <div>
+            <div className="form__label">Prévia da imagem:</div>
+            <img
+              src={previewImage}
+              className="preview-image"
+              alt="Prévia da Imagem"
+            />
+          </div>
+        )}
+
+        <div>
+          <input
+            type="submit"
+            value="Editar"
+            className="button button--blue button--full"
+          />
+        </div>
       </form>
     </div>
   );

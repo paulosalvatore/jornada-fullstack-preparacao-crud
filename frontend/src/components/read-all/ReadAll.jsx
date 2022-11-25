@@ -1,37 +1,34 @@
 import React, { useEffect, useState } from "react";
-
-import { Api } from "../../api/api";
-
 import { ItemCard } from "../item-card/ItemCard.jsx";
+import { Api } from "../../api/api";
 
 import "./ReadAll.css";
 
 export default function ReadAll() {
-  // useState
-  const [listaResultadoApi, atualizarListaResultadoApi] = useState(undefined);
+  const [items, setItems] = useState();
 
   // useEffect
   useEffect(() => {
-    if (!listaResultadoApi) {
-      obterResultado();
+    if (!items) {
+      loadData();
     }
   }, []);
 
-  const obterResultado = async () => {
-    const resultado = await Api.buildApiGetRequest(Api.item.readAll());
+  const loadData = async () => {
+    const url = Api.item.readAll();
+    const response = await Api.buildApiGetRequest(url);
+    const body = await response.json();
 
-    const dados = await resultado.json();
-
-    atualizarListaResultadoApi(dados);
+    setItems(body);
   };
 
-  if (!listaResultadoApi) {
+  if (!items) {
     return <div>Carregando...</div>;
   }
 
   return (
     <div className="ReadAll">
-      {listaResultadoApi.map((item, index) => (
+      {items.map((item, index) => (
         <ItemCard item={item} key={index} />
       ))}
     </div>

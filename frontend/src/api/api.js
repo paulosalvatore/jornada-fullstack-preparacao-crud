@@ -20,7 +20,14 @@ export const Api = {
     },
   },
 
-  // Create
+  // GET
+  buildApiGetRequest: (url) => {
+    return fetch(url, {
+      method: "GET",
+    });
+  },
+
+  // POST
   buildApiPostRequest: (url, body) => {
     return fetch(url, {
       method: "POST",
@@ -31,14 +38,7 @@ export const Api = {
     });
   },
 
-  // ReadAll
-  buildApiGetRequest: (url) => {
-    return fetch(url, {
-      method: "GET",
-    });
-  },
-
-  // UpdateById
+  // PUT
   buildApiPutRequest: (url, body) => {
     return fetch(url, {
       method: "PUT",
@@ -49,7 +49,7 @@ export const Api = {
     });
   },
 
-  // DeleteAll
+  // DELETE
   buildApiDeleteRequest: (url) => {
     return fetch(url, {
       method: "DELETE",

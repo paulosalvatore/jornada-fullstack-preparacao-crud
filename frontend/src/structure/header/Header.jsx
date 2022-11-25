@@ -1,17 +1,18 @@
 import React from "react";
-import Brand from "../../assets/brand.svg";
+import Brand from "../../../public/brand.svg";
+import { Link } from "react-router-dom";
 
 import "./Header.css";
 
 export default function Header() {
   return (
     <header className="Header">
-      <a href="/">
+      <Link to="/">
         <img src={Brand} width={32} height={32} alt="Samsung Ocean" />
-      </a>
+      </Link>
 
-      <a href="/">Listar</a>
-      <a href="/add">Adicionar</a>
+      <Link to="/">Listar</Link>
+      <Link to="/add">Adicionar</Link>
     </header>
   );
 }
