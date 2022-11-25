@@ -4,7 +4,7 @@ const ObjectId = require("mongoose").Types.ObjectId;
 /**
  * Return all items from database
  */
-const findAll = () => Item.find();
+const findAll = () => Item.find().select("_id name imageUrl");
 
 /**
  * Return an item by given ID
