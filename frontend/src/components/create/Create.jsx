@@ -55,7 +55,9 @@ export default function Create() {
   };
 
   return (
-    <div className="create">
+    <div className="Create">
+      <h1 className="title">Criar Item</h1>
+
       <form className="form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name" className="form__label">

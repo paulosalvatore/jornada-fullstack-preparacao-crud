@@ -27,9 +27,13 @@ export default function ReadAll() {
 
   return (
     <div className="ReadAll">
-      {items.map((item, index) => (
-        <ItemCard item={item} key={index} />
-      ))}
+      <h1 className="title">Lista de Itens</h1>
+
+      <div className="card-list">
+        {items.map((item, index) => (
+          <ItemCard item={item} key={index} />
+        ))}
+      </div>
     </div>
   );
 }

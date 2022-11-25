@@ -8,6 +8,7 @@ import "./index.css";
 import "./styles/button.css";
 import "./styles/card.css";
 import "./styles/form.css";
+import "./styles/title.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

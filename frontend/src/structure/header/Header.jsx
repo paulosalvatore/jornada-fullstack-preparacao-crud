@@ -13,6 +13,8 @@ export default function Header() {
 
       <Link to="/">Listar Itens</Link>
       <Link to="/add">Adicionar Item</Link>
+
+      <Link to="/category/add">Adicionar Categoria</Link>
     </header>
   );
 }

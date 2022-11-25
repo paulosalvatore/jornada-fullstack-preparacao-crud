@@ -28,7 +28,9 @@ export default function ReadById() {
   }
 
   return (
-    <div className="read-by-id">
+    <div className="ReadById">
+      <h1 className="title">Visualizar Item</h1>
+
       <div>
         <Link to={`/update/${id}`} className="button button--blue">
           Editar
@@ -42,7 +44,7 @@ export default function ReadById() {
       <div className="card">
         <div className="card__label">{item.category.name}</div>
 
-        <h1 className="card__title">{item.name}</h1>
+        <h1 className="title">{item.name}</h1>
         <img src={item.imageUrl} alt={item.name} width="200" />
       </div>
     </div>

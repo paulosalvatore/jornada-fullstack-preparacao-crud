@@ -24,6 +24,7 @@ export default function Delete() {
 
   return (
     <div className="card">
+      <h1 className="title">Remover Item</h1>
       Tem certeza que deseja remover este registro?
       <br />
       <br />

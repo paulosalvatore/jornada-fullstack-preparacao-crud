@@ -1,3 +1,10 @@
+.card-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .card {
     background: #F6F6F6;
     border: rgba(223, 225, 229, 0);
@@ -7,13 +14,6 @@
     box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
     border-top: 0.25rem solid #02A7E2;
     border-bottom: 0.25rem solid #02A7E2;
-}
-
-.card__title {
-    font-size: 1.5rem;
-    margin: 0 0 0.75rem;
-    border-left: 0.25rem solid #02A7E2;
-    padding-left: 0.5rem;
 }
 
 .card__label {

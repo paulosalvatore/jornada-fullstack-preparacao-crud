@@ -25,6 +25,9 @@ export const Api = {
     readAll: function () {
       return this.endpoint() + "/";
     },
+    create: function () {
+      return this.endpoint() + "/";
+    },
   },
 
   // GET

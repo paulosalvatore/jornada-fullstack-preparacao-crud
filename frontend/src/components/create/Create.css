@@ -1,8 +1,8 @@
-.create {
+.Create {
   margin: 0.5rem;
 }
 
-.create .preview-image {
+.Create .preview-image {
   max-width: 300px;
   max-height: 200px;
 }

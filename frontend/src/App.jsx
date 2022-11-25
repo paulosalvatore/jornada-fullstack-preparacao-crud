@@ -8,6 +8,7 @@ import Create from "./components/create/Create.jsx";
 import Update from "./components/update/Update.jsx";
 import Delete from "./components/delete/Delete.jsx";
 import Footer from "./structure/footer/Footer.jsx";
+import CategoryCreate from "./components/category/create/CategoryCreate";
 
 import "./App.css";
 
@@ -19,15 +20,15 @@ function App() {
       {/* Routes */}
       <div className="content">
         <Routes>
+          {/* Item */}
           <Route path="/" exact={true} element={<ReadAll />} />
-
           <Route path="/view/:id" element={<ReadById />} />
-
           <Route path="/add" element={<Create />} />
-
           <Route path="/update/:id" element={<Update />} />
-
           <Route path="/delete/:id" element={<Delete />} />
+
+          {/* Category */}
+          <Route path="/category/add" element={<CategoryCreate />} />
         </Routes>
       </div>
 

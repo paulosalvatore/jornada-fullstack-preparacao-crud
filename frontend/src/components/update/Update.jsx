@@ -60,6 +60,8 @@ export default function Update() {
 
   return (
     <div className="Update">
+      <h1 className="title">Editar Item</h1>
+
       <form className="form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name" className="form__label">
