@@ -7,7 +7,6 @@ import "./ReadAll.css";
 export default function ReadAll() {
   const [items, setItems] = useState();
 
-  // useEffect
   useEffect(() => {
     if (!items) {
       loadData();
