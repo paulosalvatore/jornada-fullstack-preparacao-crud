@@ -159,6 +159,9 @@ export default function Create() {
               `Criar categoria "${inputValue}"`
             }
             onCreateOption={createCategory}
+            noOptionsMessage={() =>
+              "Nenhuma categoria encontrada. Digite algo para criar."
+            }
             required
           />
         </div>
