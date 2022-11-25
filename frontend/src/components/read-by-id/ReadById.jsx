@@ -39,6 +39,8 @@ export default function ReadById() {
 
       <br />
       <div className="card">
+        <div className="card__label">{item.category.name}</div>
+
         <h1 className="card__title">{item.name}</h1>
         <img src={item.imageUrl} alt={item.name} width="200" />
       </div>

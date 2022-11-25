@@ -15,3 +15,17 @@
     border-left: 0.25rem solid #02A7E2;
     padding-left: 0.5rem;
 }
+
+.card__label {
+    top: 0.65rem;
+    right: 0.65rem;
+    display: block;
+    padding: 0.25rem 0.5rem;
+    font-size: .65em;
+    color: #FFFFFF;
+    background-color: #0D6EFD;
+    border: 1px solid;
+    border-radius: 0.25rem;
+    width: fit-content;
+    margin-bottom: 0.5rem;
+}
