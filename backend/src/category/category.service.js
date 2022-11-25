@@ -4,7 +4,7 @@ const ObjectId = require("mongoose").Types.ObjectId;
 /**
  * Return all categories from database
  */
-const findAll = () => Category.find();
+const findAll = () => Category.find().sort({ name: 1 });
 
 /**
  * Return a category by given ID
