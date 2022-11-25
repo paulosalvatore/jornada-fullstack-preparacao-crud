@@ -7,7 +7,7 @@ import "./Create.css";
 
 export default function Create() {
   const [previewImage, setPreviewImage] = useState();
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState();
 
   const navigate = useNavigate();
 
