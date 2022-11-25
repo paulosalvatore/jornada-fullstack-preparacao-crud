@@ -60,6 +60,11 @@ export default function Create() {
     const imageUrl = event.target.imageUrl.value;
     const category = event.target.category.value;
 
+    if (!previewImage) {
+      alert("Insira uma imagem válida.");
+      return;
+    }
+
     const payload = {
       name,
       imageUrl,
