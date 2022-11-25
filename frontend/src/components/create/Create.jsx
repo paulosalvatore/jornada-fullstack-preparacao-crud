@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../api/api";
-import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 import "./Create.css";
 
 export default function Create() {
   const [previewImage, setPreviewImage] = useState();
   const [categories, setCategories] = useState();
+
+  const selectCategories = useRef();
 
   const navigate = useNavigate();
 
@@ -19,6 +21,30 @@ export default function Create() {
     setCategories(
       body.map((category) => ({ value: category._id, label: category.name }))
     );
+  };
+
+  const createCategory = async (name) => {
+    const payload = {
+      name,
+    };
+
+    const url = Api.category.create();
+    const response = await Api.buildApiPostRequest(url, payload);
+
+    if (response.status === 201) {
+      // Reload categories
+      setCategories(undefined);
+      await loadCategories();
+
+      // Select the new category
+      const body = await response.json();
+      selectCategories.current.setValue({
+        value: body._id,
+        label: body.name,
+      });
+    } else {
+      alert("Erro ao criar categoria, tente novamente.");
+    }
   };
 
   useEffect(() => {
@@ -97,14 +123,19 @@ export default function Create() {
             Categoria*:
           </label>
 
-          <Select
+          <CreatableSelect
+            ref={selectCategories}
             className="form__select"
-            classNamePrefix="select"
             id="category"
             name="category"
             placeholder={"Selecione uma categoria"}
             isLoading={categories === undefined}
             options={categories}
+            allowCreateWhileLoading={false}
+            formatCreateLabel={(inputValue) =>
+              `Criar categoria "${inputValue}"`
+            }
+            onCreateOption={createCategory}
           />
         </div>
 
