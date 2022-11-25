@@ -46,7 +46,7 @@ export default function Update() {
       alert("Item atualizado com sucesso.");
       navigate(`/view/${id}`);
     } else {
-      alert("Erro ao atualizar item.");
+      alert("Erro ao atualizar item, tente novamente.");
     }
   };
 

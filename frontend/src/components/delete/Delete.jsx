@@ -18,7 +18,7 @@ export default function Delete() {
       alert("Item removido com sucesso.");
       navigate("/");
     } else {
-      alert("Erro ao deletar item.");
+      alert("Erro ao remover item, tente novamente.");
     }
   };
 

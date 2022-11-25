@@ -28,7 +28,7 @@ export default function Create() {
       alert("Item criado com sucesso.");
       navigate(`/view/${body._id}`);
     } else {
-      alert("Erro ao criar item.");
+      alert("Erro ao criar item, tente novamente.");
     }
   };
 
