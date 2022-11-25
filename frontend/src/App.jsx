@@ -4,11 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./structure/header/Header.jsx";
 import Footer from "./structure/footer/Footer.jsx";
 
-import ReadAll from "./components/read-all/ReadAll.jsx";
-import ReadById from "./components/read-by-id/ReadById.jsx";
-import Create from "./components/create/Create.jsx";
-import Update from "./components/update/Update.jsx";
-import Delete from "./components/delete/Delete.jsx";
+import ReadAll from "./components/item/read-all/ReadAll.jsx";
+import ReadById from "./components/item/read-by-id/ReadById.jsx";
+import Create from "./components/item/create/Create.jsx";
+import Update from "./components/item/update/Update.jsx";
+import Delete from "./components/item/delete/Delete.jsx";
 
 import "./App.css";
 

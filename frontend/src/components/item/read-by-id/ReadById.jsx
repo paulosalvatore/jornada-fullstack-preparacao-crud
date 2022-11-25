@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Api } from "../../api/api";
+import { Api } from "../../../api/api.js";
 import { Link, useParams } from "react-router-dom";
 
 import "./ReadById.css";

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Api } from "../../api/api";
+import { Api } from "../../../api/api.js";
 
 import "./Update.css";
 import { toast } from "react-toastify";

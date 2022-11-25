@@ -1,4 +1,4 @@
-import { Api } from "../../api/api";
+import { Api } from "../../../api/api.js";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 import "./Delete.css";

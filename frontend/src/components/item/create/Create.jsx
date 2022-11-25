@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Api } from "../../api/api";
+import { Api } from "../../../api/api.js";
 import CreatableSelect from "react-select/creatable";
 
 import "./Create.css";

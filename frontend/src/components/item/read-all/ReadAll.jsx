@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ItemCard } from "../item-card/ItemCard.jsx";
-import { Api } from "../../api/api";
+import { Api } from "../../../api/api.js";
 
 import "./ReadAll.css";
 
