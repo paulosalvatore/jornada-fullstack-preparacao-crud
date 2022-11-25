@@ -42,7 +42,7 @@ const create = async (req, res) => {
   const item = req.body;
 
   // Validate object
-  if (!item || !item.name || !item.imageUrl) {
+  if (!item || !item.name || !item.imageUrl || !item.category) {
     return res.status(400).send({ message: "Dados inválidos!" });
   }
 
