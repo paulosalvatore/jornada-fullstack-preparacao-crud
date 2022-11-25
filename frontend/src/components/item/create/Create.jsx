@@ -8,14 +8,13 @@ import { toast } from "react-toastify";
 import PreviewImage from "../../ui/PreviewImage/PreviewImage.jsx";
 
 export default function Create() {
-  const [categories, setCategories] = useState();
-
   const [imageUrl, setImageUrl] = useState();
   const [image, setImage] = useState();
 
-  const selectCategories = useRef();
-
   const navigate = useNavigate();
+
+  const [categories, setCategories] = useState();
+  const selectCategories = useRef();
 
   const loadCategories = async () => {
     const url = Api.category.readAll();
