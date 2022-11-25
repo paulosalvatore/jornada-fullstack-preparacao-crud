@@ -2,16 +2,17 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Header from "./structure/header/Header.jsx";
+import Footer from "./structure/footer/Footer.jsx";
+
 import ReadAll from "./components/read-all/ReadAll.jsx";
 import ReadById from "./components/read-by-id/ReadById.jsx";
 import Create from "./components/create/Create.jsx";
 import Update from "./components/update/Update.jsx";
 import Delete from "./components/delete/Delete.jsx";
-import Footer from "./structure/footer/Footer.jsx";
 
 import "./App.css";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <Header />
@@ -32,5 +33,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
