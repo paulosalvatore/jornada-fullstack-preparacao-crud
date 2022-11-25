@@ -81,7 +81,7 @@ export default function Create() {
           />
         </div>
 
-        {previewImage ? (
+        {previewImage && (
           <div>
             <div className="form__label">Prévia da imagem:</div>
             <img
@@ -90,8 +90,6 @@ export default function Create() {
               alt="Prévia da Imagem"
             />
           </div>
-        ) : (
-          ""
         )}
 
         <div>
