@@ -12,7 +12,7 @@ const findAll = () => Item.find();
  */
 const findById = (id) => {
   const objectId = new ObjectId(id);
-  return Item.findById(objectId);
+  return Item.findById(objectId).populate("category");
 };
 
 /**
