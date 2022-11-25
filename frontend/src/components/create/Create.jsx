@@ -98,12 +98,6 @@ export default function Create() {
             name="name"
             className="form__input"
             required
-            onInvalid={(event) => {
-              event.target.setCustomValidity("Preencha o campo corretamente.");
-            }}
-            onInput={(event) => {
-              event.target.setCustomValidity("");
-            }}
           />
         </div>
 
@@ -119,9 +113,6 @@ export default function Create() {
             className="form__input"
             onChange={updatePreview}
             required
-            onInvalid={(event) => {
-              event.target.setCustomValidity("Preencha o campo corretamente.");
-            }}
           />
         </div>
 
