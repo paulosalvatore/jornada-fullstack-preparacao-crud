@@ -1,0 +1,6 @@
+PUT http://localhost:3000/category/638029ba93916dd958e015a1
+Content-Type: application/json
+
+{
+  "nome": "Categoria 1 - Edit"
+}

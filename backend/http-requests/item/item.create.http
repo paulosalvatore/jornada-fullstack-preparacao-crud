@@ -3,5 +3,6 @@ Content-Type: application/json
 
 {
   "nome": "Item 2",
-  "imagemUrl": "https://source.unsplash.com/random/200x200"
+  "imagemUrl": "https://source.unsplash.com/random/200x200",
+  "categoria": "638029ba93916dd958e015a1"
 }
