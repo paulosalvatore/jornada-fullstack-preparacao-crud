@@ -41,11 +41,10 @@ export default function Update() {
 
     const url = Api.item.update(id);
     const response = await Api.buildApiPutRequest(url, payload);
-    const body = await response.json();
 
     if (response.status === 200) {
       alert("Item atualizado com sucesso.");
-      navigate(`/view/${body._id}`);
+      navigate(`/view/${id}`);
     } else {
       alert("Erro ao atualizar item.");
     }

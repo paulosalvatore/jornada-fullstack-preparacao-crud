@@ -15,7 +15,7 @@ export default function Delete() {
     const response = await Api.buildApiDeleteRequest(url);
 
     if (response.status === 200) {
-      alert("Item deletado com sucesso.");
+      alert("Item removido com sucesso.");
       navigate("/");
     } else {
       alert("Erro ao deletar item.");
