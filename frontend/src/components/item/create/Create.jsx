@@ -5,12 +5,13 @@ import CreatableSelect from "react-select/creatable";
 
 import "./Create.css";
 import { toast } from "react-toastify";
+import PreviewImage from "../../ui/PreviewImage/PreviewImage.jsx";
 
 export default function Create() {
   const [categories, setCategories] = useState();
 
-  const [previewImage, setPreviewImage] = useState();
-  const [previewImageVisibility, setPreviewImageVisibility] = useState(false);
+  const [imageUrl, setImageUrl] = useState();
+  const [image, setImage] = useState();
 
   const selectCategories = useRef();
 
@@ -61,7 +62,7 @@ export default function Create() {
     const imageUrl = event.target.imageUrl.value;
     const category = event.target.category.value;
 
-    if (!previewImage) {
+    if (!image) {
       toast("Insira uma imagem válida", { type: "error" });
       return;
     }
@@ -82,10 +83,6 @@ export default function Create() {
     } else {
       toast("Erro ao criar item, tente novamente", { type: "error" });
     }
-  };
-
-  const updatePreview = (event) => {
-    setPreviewImage(event.target.value);
   };
 
   return (
@@ -117,29 +114,12 @@ export default function Create() {
             id="imageUrl"
             name="imageUrl"
             className="form__input"
-            onChange={updatePreview}
+            onChange={(event) => setImageUrl(event.target.value)}
             required
           />
         </div>
 
-        <div
-          style={{
-            display: previewImageVisibility ? "block" : "none",
-          }}
-        >
-          <div className="form__label">Prévia da imagem:</div>
-          <img
-            src={previewImage}
-            className="preview-image"
-            alt="Prévia da Imagem"
-            onKeyDown={() => setPreviewImageVisibility(false)}
-            onError={() => {
-              setPreviewImage(undefined);
-              setPreviewImageVisibility(false);
-            }}
-            onLoad={() => setPreviewImageVisibility(true)}
-          />
-        </div>
+        <PreviewImage imageUrl={imageUrl} onImageLoaded={setImage} />
 
         <div>
           <label htmlFor="category" className="form__label">
