@@ -58,14 +58,14 @@ export default function Create() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const name = event.target.name.value;
-    const imageUrl = event.target.imageUrl.value;
-    const category = event.target.category.value;
-
     if (!image) {
       toast("Insira uma imagem válida", { type: "error" });
       return;
     }
+
+    const name = event.target.name.value;
+    const imageUrl = event.target.imageUrl.value;
+    const category = event.target.category.value;
 
     const payload = {
       name,
