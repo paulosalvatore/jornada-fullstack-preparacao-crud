@@ -11,8 +11,8 @@ export default function Header() {
         <img src={Brand} width={32} height={32} alt="Samsung Ocean" />
       </Link>
 
-      <Link to="/">Listar</Link>
-      <Link to="/add">Adicionar</Link>
+      <Link to="/">Listar Itens</Link>
+      <Link to="/add">Adicionar Item</Link>
     </header>
   );
 }

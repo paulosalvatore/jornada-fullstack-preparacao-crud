@@ -1,23 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../api/api";
+import Select from "react-select";
 
 import "./Create.css";
 
 export default function Create() {
   const [previewImage, setPreviewImage] = useState();
+  const [categories, setCategories] = useState([]);
 
   const navigate = useNavigate();
+
+  const loadCategories = async () => {
+    const url = Api.category.readAll();
+    const response = await Api.buildApiGetRequest(url);
+    const body = await response.json();
+
+    setCategories(
+      body.map((category) => ({ value: category._id, label: category.name }))
+    );
+  };
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const name = event.target.name.value;
     const imageUrl = event.target.imageUrl.value;
+    const category = event.target.category.value;
 
     const payload = {
       name,
       imageUrl,
+      category,
     };
 
     const url = Api.item.create();
@@ -41,7 +59,7 @@ export default function Create() {
       <form className="form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name" className="form__label">
-            Nome:
+            Nome*:
           </label>
 
           <input type="text" id="name" name="name" className="form__input" />
@@ -49,7 +67,7 @@ export default function Create() {
 
         <div>
           <label htmlFor="imageUrl" className="form__label">
-            URL da Imagem:
+            URL da Imagem*:
           </label>
 
           <input
@@ -73,6 +91,22 @@ export default function Create() {
         ) : (
           ""
         )}
+
+        <div>
+          <label htmlFor="category" className="form__label">
+            Categoria*:
+          </label>
+
+          <Select
+            className="form__select"
+            classNamePrefix="select"
+            id="category"
+            name="category"
+            placeholder={"Selecione uma categoria"}
+            isLoading={categories === undefined}
+            options={categories}
+          />
+        </div>
 
         <div>
           <input

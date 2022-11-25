@@ -20,6 +20,13 @@ export const Api = {
     },
   },
 
+  category: {
+    endpoint: () => Api.baseUrl + "category",
+    readAll: function () {
+      return this.endpoint() + "/";
+    },
+  },
+
   // GET
   buildApiGetRequest: (url) => {
     return fetch(url, {
